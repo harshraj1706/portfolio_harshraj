@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #fdf8f6;
+    --foreground: #1c1b1a;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: #fdf8f6;
+    color: #1c1b1a;
+  }
+
+  body {
+    background-color: #fdf8f6;
+    color: #1c1b1a;
+    font-family: var(--font-inter), system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: #dce1ff;
+    color: #001551;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Animations from Stitch Reference */
+@keyframes scanline {
+  0% { top: 0%; opacity: 0; }
+  15% { opacity: 0.85; }
+  85% { opacity: 0.85; }
+  100% { top: 100%; opacity: 0; }
+}
+
+.animate-scan {
+  animation: scanline 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@keyframes shimmerShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.shimmer-headline {
+  background: linear-gradient(90deg, #1d4ed8, #0037b0, #fd651e, #1d4ed8);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerShift 7s ease infinite;
+}
+
+@keyframes pulseCircuit {
+  0%, 100% { opacity: 0.25; transform: scaleX(0.97); }
+  50% { opacity: 0.85; transform: scaleX(1); }
+}
+
+.animate-circuit-pulse {
+  animation: pulseCircuit 3.5s ease-in-out infinite;
+}
+
+/* Accessible focus ring */
+:focus-visible {
+  outline: 2px solid #0037b0;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
