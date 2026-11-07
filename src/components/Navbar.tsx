@@ -26,7 +26,16 @@ export function Navbar({ onCopyEmail, copied, theme, onToggleTheme }: NavbarProp
       setScrollProgress(scrolled);
 
       // Section scrollspy
-      const sections = ["about", "trajectory", "focus", "toolkit", "projects", "education", "leadership", "contact"];
+      const sections = [
+        "about",
+        "trajectory",
+        "focus",
+        "toolkit",
+        "projects",
+        "education",
+        "leadership",
+        "contact",
+      ];
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {
@@ -72,46 +81,46 @@ export function Navbar({ onCopyEmail, copied, theme, onToggleTheme }: NavbarProp
       />
 
       {/* Main Header */}
-      <header className="fixed top-0 left-0 w-full z-40 bg-[#fdf8f6]/92 backdrop-blur-md border-b border-[#e6e2df] transition-all">
-        <div className="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 flex items-center justify-between">
-          {/* Logo / Affiliation */}
-          <div className="flex items-center gap-3">
+      <header className="fixed top-0 left-0 w-full z-40 bg-[#fdf8f6]/95 backdrop-blur-md border-b border-[#e6e2df] transition-all">
+        <div className="h-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between gap-4">
+          {/* Logo / Brand (No wrap, rock-solid alignment) */}
+          <div className="flex items-center shrink-0">
             <a
               href="#about"
-              className="flex flex-col group focus-visible:ring-1 focus-visible:ring-[#0037b0] rounded p-0.5"
+              className="flex flex-col shrink-0 group focus-visible:ring-1 focus-visible:ring-[#0037b0] rounded py-0.5"
             >
-              <span className="font-mono text-[11px] font-bold uppercase tracking-wider text-[#1c1b1a] group-hover:text-[#0037b0] transition-colors">
-                {PORTFOLIO_DATA.profile.name} {"//"} {PORTFOLIO_DATA.profile.shortInstitution}
+              <span className="font-mono text-xs sm:text-[13px] font-bold uppercase tracking-wider text-[#1c1b1a] group-hover:text-[#0037b0] transition-colors whitespace-nowrap">
+                {PORTFOLIO_DATA.profile.name}{" "}
+                <span className="text-[#0037b0] font-normal">{"//"}</span>{" "}
+                <span className="hidden sm:inline">
+                  {PORTFOLIO_DATA.profile.shortInstitution}
+                </span>
+                <span className="sm:hidden">IIIT-BGP</span>
               </span>
-              <span className="font-mono text-[10px] sm:text-[11px] text-[#434655]">
-                B.Tech Mechatronics &amp; Automation · Minor in CSE
+              <span className="font-mono text-[10px] text-[#434655] whitespace-nowrap">
+                Mechatronics &amp; Automation · Minor in CSE
               </span>
             </a>
-
-            {/* Academic Status Chip */}
-            <div className="hidden xl:flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#f2edeb] border border-[#e6e2df]">
-              <span className="relative flex h-2 w-2" aria-hidden="true">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-600"></span>
-              </span>
-              <span className="font-mono text-[11px] text-[#434655] font-medium">
-                2024–2028 · CGPA 7.81 · ACTIVE
-              </span>
-            </div>
           </div>
 
           {/* Desktop Navigation Links */}
           <nav
-            aria-label="Primary"
-            className="hidden lg:flex items-center gap-1 py-1 px-1.5 rounded-full bg-[#f7f3f0] border border-[#e6e2df]"
+            aria-label="Primary Navigation"
+            className="hidden lg:flex items-center gap-0.5 xl:gap-1 py-1 px-1.5 rounded-full bg-[#f7f3f0] border border-[#e6e2df] shrink-0"
           >
             {navItems.map((item) => {
               const isActive = activeSection === item.id;
+              // On medium-large (1024-1280px), hide "Trajectory" and "Leadership" from pill to ensure generous breathing room
+              const hideOnTightScreen =
+                item.id === "trajectory" || item.id === "leadership";
+
               return (
                 <button
                   key={item.id}
                   onClick={() => handleNavClick(item.id)}
-                  className={`px-3 py-1 rounded-full text-xs font-mono transition-all duration-150 ${
+                  className={`px-2.5 xl:px-3 py-1 rounded-full text-[11px] xl:text-xs font-mono transition-all duration-150 whitespace-nowrap shrink-0 ${
+                    hideOnTightScreen ? "hidden xl:inline-block" : ""
+                  } ${
                     isActive
                       ? "bg-[#ece7e5] text-[#1c1b1a] font-semibold shadow-xs"
                       : "text-[#434655] hover:text-[#1c1b1a] hover:bg-[#f2edeb]"
@@ -123,13 +132,13 @@ export function Navbar({ onCopyEmail, copied, theme, onToggleTheme }: NavbarProp
             })}
           </nav>
 
-          {/* Action Buttons */}
-          <div className="flex items-center gap-2">
+          {/* Action Buttons (Right) */}
+          <div className="flex items-center gap-2 shrink-0">
             {/* Day / Night Lighting Switch */}
             <button
               onClick={onToggleTheme}
               type="button"
-              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded bg-[#f2edeb] hover:bg-[#ece7e5] active:scale-95 text-[#1c1b1a] font-mono text-[11px] font-semibold transition-all border border-[#e6e2df] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0037b0]"
+              className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-[#f2edeb] hover:bg-[#ece7e5] active:scale-95 text-[#1c1b1a] font-mono text-[11px] font-semibold transition-all border border-[#e6e2df] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0037b0] whitespace-nowrap shrink-0"
               title={
                 theme === "night"
                   ? "Switch to Day Lighting (Warm Monograph)"
@@ -143,64 +152,68 @@ export function Navbar({ onCopyEmail, copied, theme, onToggleTheme }: NavbarProp
             >
               {theme === "night" ? (
                 <>
-                  <Sun className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
-                  <span className="hidden sm:inline">Day Mode</span>
+                  <Sun className="w-3.5 h-3.5 text-amber-400 animate-pulse shrink-0" />
+                  <span className="hidden xl:inline">Day</span>
                 </>
               ) : (
                 <>
-                  <Moon className="w-3.5 h-3.5 text-[#0037b0]" />
-                  <span className="hidden sm:inline">Night Mode</span>
+                  <Moon className="w-3.5 h-3.5 text-[#0037b0] shrink-0" />
+                  <span className="hidden xl:inline">Night</span>
                 </>
               )}
             </button>
 
-            {/* Copy Email Button */}
+            {/* Copy Email Button (Visible on xl+ screens) */}
             <button
               onClick={onCopyEmail}
               type="button"
-              className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#f2edeb] hover:bg-[#ece7e5] active:scale-95 text-[#1c1b1a] font-mono text-[11px] font-semibold uppercase transition-all border border-[#e6e2df] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0037b0]"
+              className="hidden xl:inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded bg-[#f2edeb] hover:bg-[#ece7e5] active:scale-95 text-[#1c1b1a] font-mono text-[11px] font-semibold uppercase transition-all border border-[#e6e2df] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0037b0] whitespace-nowrap shrink-0"
               title="Copy Harsh's Email"
               aria-label="Copy Email Address"
             >
               {copied ? (
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
+                <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
               ) : (
-                <Copy className="w-3.5 h-3.5 text-[#434655]" />
+                <Copy className="w-3.5 h-3.5 text-[#434655] shrink-0" />
               )}
               <span>{copied ? "Copied" : "Copy Email"}</span>
             </button>
 
-            {/* GitHub Link */}
+            {/* GitHub Link (Visible on 2xl+ screens) */}
             <a
               href={PORTFOLIO_DATA.profile.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden md:inline-flex items-center px-3 py-1.5 rounded bg-[#f2edeb] hover:bg-[#ece7e5] active:scale-95 text-[#1c1b1a] font-mono text-[11px] font-semibold uppercase transition-all border border-[#e6e2df]"
+              className="hidden 2xl:inline-flex items-center px-3 py-1.5 rounded bg-[#f2edeb] hover:bg-[#ece7e5] active:scale-95 text-[#1c1b1a] font-mono text-[11px] font-semibold uppercase transition-all border border-[#e6e2df] whitespace-nowrap shrink-0"
             >
               GitHub
             </a>
 
-            {/* Resume PDF Link (Opens Real Resume PDF) */}
+            {/* Resume PDF Link (Always visible, prominent CTA) */}
             <a
               href={PORTFOLIO_DATA.profile.resumePdfPath}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded bg-[#0037b0] text-white hover:bg-[#1d4ed8] active:scale-95 font-mono text-[11px] font-semibold uppercase transition-all shadow-[2px_2px_0px_#001551]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded bg-[#0037b0] text-white hover:bg-[#1d4ed8] active:scale-95 font-mono text-[11px] font-semibold uppercase transition-all shadow-[2px_2px_0px_#001551] whitespace-nowrap shrink-0"
               title="Download Harsh Raj's Resume (PDF)"
             >
-              <FileText className="w-3.5 h-3.5" />
+              <FileText className="w-3.5 h-3.5 shrink-0" />
               <span>Resume PDF</span>
             </a>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile / Tablet Menu Button */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               type="button"
-              className="lg:hidden p-2 rounded bg-[#f2edeb] text-[#1c1b1a] hover:bg-[#ece7e5] transition-colors focus-visible:ring-2 focus-visible:ring-[#0037b0]"
+              className="lg:hidden p-2 rounded bg-[#f2edeb] text-[#1c1b1a] hover:bg-[#ece7e5] transition-colors focus-visible:ring-2 focus-visible:ring-[#0037b0] shrink-0"
               aria-label="Toggle navigation menu"
               aria-expanded={mobileMenuOpen}
             >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              {mobileMenuOpen ? (
+                <X className="w-5 h-5" />
+              ) : (
+                <Menu className="w-5 h-5" />
+              )}
             </button>
           </div>
         </div>
@@ -227,7 +240,10 @@ export function Navbar({ onCopyEmail, copied, theme, onToggleTheme }: NavbarProp
             {/* Mobile Theme Toggle Strip */}
             <div className="flex items-center justify-between p-2.5 rounded bg-[#f7f3f0] border border-[#e6e2df]">
               <span className="font-mono text-xs text-[#434655]">
-                LIGHTING: {theme === "night" ? "TACTICAL NIGHT [OBSIDIAN]" : "DAY [WARM LAB]"}
+                LIGHTING:{" "}
+                {theme === "night"
+                  ? "TACTICAL NIGHT [OBSIDIAN]"
+                  : "DAY [WARM LAB]"}
               </span>
               <button
                 type="button"
