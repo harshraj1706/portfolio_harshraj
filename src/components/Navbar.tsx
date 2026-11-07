@@ -1,15 +1,17 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { Copy, Check, FileText, Menu, X } from "lucide-react";
+import { Copy, Check, FileText, Menu, X, Sun, Moon } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 interface NavbarProps {
   onCopyEmail: () => void;
   copied: boolean;
+  theme: "day" | "night";
+  onToggleTheme: () => void;
 }
 
-export function Navbar({ onCopyEmail, copied }: NavbarProps) {
+export function Navbar({ onCopyEmail, copied, theme, onToggleTheme }: NavbarProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSection, setActiveSection] = useState("about");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -24,7 +26,7 @@ export function Navbar({ onCopyEmail, copied }: NavbarProps) {
       setScrollProgress(scrolled);
 
       // Section scrollspy
-      const sections = ["about", "trajectory", "focus", "toolkit", "projects", "education", "contact"];
+      const sections = ["about", "trajectory", "focus", "toolkit", "projects", "education", "leadership", "contact"];
       for (const id of sections) {
         const el = document.getElementById(id);
         if (el) {
@@ -48,6 +50,7 @@ export function Navbar({ onCopyEmail, copied }: NavbarProps) {
     { id: "toolkit", label: "Toolkit" },
     { id: "projects", label: "Projects" },
     { id: "education", label: "Academics" },
+    { id: "leadership", label: "Leadership" },
     { id: "contact", label: "Contact" },
   ];
 
@@ -122,6 +125,35 @@ export function Navbar({ onCopyEmail, copied }: NavbarProps) {
 
           {/* Action Buttons */}
           <div className="flex items-center gap-2">
+            {/* Day / Night Lighting Switch */}
+            <button
+              onClick={onToggleTheme}
+              type="button"
+              className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded bg-[#f2edeb] hover:bg-[#ece7e5] active:scale-95 text-[#1c1b1a] font-mono text-[11px] font-semibold transition-all border border-[#e6e2df] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0037b0]"
+              title={
+                theme === "night"
+                  ? "Switch to Day Lighting (Warm Monograph)"
+                  : "Switch to Night Lighting (Tactical Obsidian)"
+              }
+              aria-label={
+                theme === "night"
+                  ? "Current: Night mode. Click to activate Day lighting"
+                  : "Current: Day mode. Click to activate Night lighting"
+              }
+            >
+              {theme === "night" ? (
+                <>
+                  <Sun className="w-3.5 h-3.5 text-amber-400 animate-pulse" />
+                  <span className="hidden sm:inline">Day Mode</span>
+                </>
+              ) : (
+                <>
+                  <Moon className="w-3.5 h-3.5 text-[#0037b0]" />
+                  <span className="hidden sm:inline">Night Mode</span>
+                </>
+              )}
+            </button>
+
             {/* Copy Email Button */}
             <button
               onClick={onCopyEmail}
@@ -175,7 +207,7 @@ export function Navbar({ onCopyEmail, copied }: NavbarProps) {
 
         {/* Mobile Navigation Drawer */}
         {mobileMenuOpen && (
-          <div className="lg:hidden bg-[#fdf8f6] border-b border-[#e6e2df] px-6 py-4 space-y-2 shadow-lg animate-in slide-in-from-top-2">
+          <div className="lg:hidden bg-[#fdf8f6] border-b border-[#e6e2df] px-6 py-4 space-y-3 shadow-lg animate-in slide-in-from-top-2">
             <div className="grid grid-cols-2 gap-2 pb-3 border-b border-[#e6e2df]">
               {navItems.map((item) => (
                 <button
@@ -191,7 +223,32 @@ export function Navbar({ onCopyEmail, copied }: NavbarProps) {
                 </button>
               ))}
             </div>
-            <div className="pt-2 flex flex-wrap gap-2">
+
+            {/* Mobile Theme Toggle Strip */}
+            <div className="flex items-center justify-between p-2.5 rounded bg-[#f7f3f0] border border-[#e6e2df]">
+              <span className="font-mono text-xs text-[#434655]">
+                LIGHTING: {theme === "night" ? "TACTICAL NIGHT [OBSIDIAN]" : "DAY [WARM LAB]"}
+              </span>
+              <button
+                type="button"
+                onClick={onToggleTheme}
+                className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-[#ece7e5] text-xs font-mono font-semibold"
+              >
+                {theme === "night" ? (
+                  <>
+                    <Sun className="w-3.5 h-3.5 text-amber-400" />
+                    <span>Day Mode</span>
+                  </>
+                ) : (
+                  <>
+                    <Moon className="w-3.5 h-3.5 text-[#0037b0]" />
+                    <span>Night Mode</span>
+                  </>
+                )}
+              </button>
+            </div>
+
+            <div className="pt-1 flex flex-wrap gap-2">
               <button
                 onClick={onCopyEmail}
                 className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded bg-[#f2edeb] text-xs font-mono uppercase font-semibold"

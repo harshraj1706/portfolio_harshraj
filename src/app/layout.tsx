@@ -71,8 +71,25 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={`${inter.variable} ${newsreader.variable} ${jetbrainsMono.variable} scroll-smooth`}
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){
+              try {
+                var t = localStorage.getItem('harsh_portfolio_theme');
+                if (t === 'night' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                  document.documentElement.classList.add('dark');
+                } else {
+                  document.documentElement.classList.remove('dark');
+                }
+              } catch (e) {}
+            })();`,
+          }}
+        />
+      </head>
       <body className="min-h-screen bg-[#fdf8f6] text-[#1c1b1a] antialiased selection:bg-[#dce1ff] selection:text-[#001551]">
         {children}
       </body>

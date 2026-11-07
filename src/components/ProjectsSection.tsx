@@ -6,6 +6,9 @@ import {
   ExternalLink,
   Layers,
   Activity,
+  Copy,
+  Check,
+  Terminal,
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
@@ -13,6 +16,8 @@ export function ProjectsSection() {
   const [selectedFilter, setSelectedFilter] = useState<"all" | "genai" | "audit" | "applied">("all");
   const [activeWorkflowNode, setActiveWorkflowNode] = useState<number>(1);
   const [activeDossierTab, setActiveDossierTab] = useState<number>(0);
+  const [copiedCloneId, setCopiedCloneId] = useState<string | null>(null);
+  const [selectedAuditFamily, setSelectedAuditFamily] = useState<string>("all");
 
   const heroProject = PORTFOLIO_DATA.projects.find((p) => p.id === "multi-agent-system")!;
   const secondaryProjects = PORTFOLIO_DATA.projects.filter((p) => p.id !== "multi-agent-system");
@@ -31,6 +36,16 @@ export function ProjectsSection() {
   });
 
   const currentNode = heroProject.workflowNodes?.find((n) => n.id === activeWorkflowNode);
+
+  const handleCopyClone = (githubUrl: string, projectId: string) => {
+    const cloneCmd = `git clone ${githubUrl}.git`;
+    if (navigator?.clipboard) {
+      navigator.clipboard.writeText(cloneCmd).then(() => {
+        setCopiedCloneId(projectId);
+        setTimeout(() => setCopiedCloneId(null), 2500);
+      });
+    }
+  };
 
   return (
     <section id="projects" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-16">
@@ -79,7 +94,7 @@ export function ProjectsSection() {
 
       {/* HERO PROJECT: Multi-Agent Research System (CogniSynth) */}
       {showHero && (
-        <article className="bg-white rounded p-6 sm:p-8 mb-8 shadow-md border border-[#e6e2df] transition-all">
+        <article className="bg-white rounded p-6 sm:p-8 mb-8 shadow-md border border-[#e6e2df] transition-all interactive-card">
           {/* Metadata Header */}
           <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 mb-6 bg-[#f7f3f0] px-4 py-3 rounded gap-3 border border-[#e6e2df]">
             <div className="flex flex-wrap items-center gap-2.5">
@@ -93,7 +108,27 @@ export function ProjectsSection() {
                 {heroProject.timeline}
               </span>
             </div>
-            <div className="flex flex-wrap items-center gap-4">
+            <div className="flex flex-wrap items-center gap-3">
+              {/* Interactive Quick Clone Button */}
+              <button
+                type="button"
+                onClick={() => handleCopyClone(heroProject.githubUrl, heroProject.id)}
+                className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[#ece7e5] hover:bg-[#e6e2df] active:scale-95 text-[#1c1b1a] font-mono text-xs font-semibold transition-all border border-[#e6e2df]"
+                title="Copy git clone command"
+              >
+                {copiedCloneId === heroProject.id ? (
+                  <>
+                    <Check className="w-3.5 h-3.5 text-emerald-600" />
+                    <span>Cloned Command</span>
+                  </>
+                ) : (
+                  <>
+                    <Terminal className="w-3.5 h-3.5 text-[#0037b0]" />
+                    <span>Quick Clone</span>
+                  </>
+                )}
+              </button>
+
               <a
                 href={heroProject.githubUrl}
                 target="_blank"
@@ -101,8 +136,9 @@ export function ProjectsSection() {
                 className="inline-flex items-center gap-1.5 font-mono text-xs text-[#0037b0] font-semibold hover:underline"
               >
                 <Code2 className="w-4 h-4" />
-                <span>GitHub Repository →</span>
+                <span>GitHub →</span>
               </a>
+
               {heroProject.demoUrl && (
                 <a
                   href={heroProject.demoUrl}
@@ -211,7 +247,7 @@ export function ProjectsSection() {
                 <span>6 ACTIVE AGENTS WORKFLOW ARCHITECTURE (STATE GRAPH)</span>
               </span>
               <span className="font-mono text-[11px] text-[#434655] bg-[#f2edeb] px-2 py-0.5 rounded border border-[#e6e2df]">
-                SELECT ANY AGENT TO INSPECT
+                CLICK ANY AGENT TO INSPECT
               </span>
             </div>
 
@@ -238,7 +274,7 @@ export function ProjectsSection() {
                     }}
                     className={`p-3 rounded cursor-pointer transition-all shadow-xs hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0037b0] ${
                       isSelected
-                        ? "ring-2 ring-[#0037b0] bg-[#f2edeb] border-transparent"
+                        ? "ring-2 ring-[#0037b0] bg-[#f2edeb] border-transparent shadow-sm"
                         : "bg-white border border-[#e6e2df] hover:border-[#747686]"
                     }`}
                   >
@@ -248,7 +284,7 @@ export function ProjectsSection() {
                       </span>
                       <span
                         className={`w-2 h-2 rounded-full ${
-                          isSelected ? "bg-[#0037b0] animate-pulse" : "bg-[#c4c5d7]"
+                          isSelected ? "bg-[#0037b0] animate-ping" : "bg-[#c4c5d7]"
                         }`}
                       />
                     </div>
@@ -334,7 +370,7 @@ export function ProjectsSection() {
         {filteredSecondary.map((proj) => (
           <article
             key={proj.id}
-            className="bg-white rounded p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between border border-[#e6e2df] group hover:border-[#747686]"
+            className="bg-white rounded p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between border border-[#e6e2df] group hover:border-[#747686] interactive-card"
           >
             <div>
               {/* Header */}
@@ -351,12 +387,24 @@ export function ProjectsSection() {
                     : "PROJECT_03 // HEALTHCARE"}
                 </span>
 
-                <div className="flex items-center gap-3 font-mono text-xs">
+                <div className="flex items-center gap-2.5 font-mono text-xs">
                   {proj.isUndeployed && (
                     <span className="px-2 py-0.5 rounded bg-[#ffdbce] text-[#370e00] font-semibold text-[11px]">
                       2ND PLACE SIH &apos;26
                     </span>
                   )}
+                  <button
+                    type="button"
+                    onClick={() => handleCopyClone(proj.githubUrl, proj.id)}
+                    className="text-[#434655] hover:text-[#1c1b1a] p-1 rounded bg-[#ece7e5] inline-flex items-center gap-1 font-mono text-[10px]"
+                    title="Copy git clone command"
+                  >
+                    {copiedCloneId === proj.id ? (
+                      <Check className="w-3 h-3 text-emerald-600" />
+                    ) : (
+                      <Copy className="w-3 h-3" />
+                    )}
+                  </button>
                   <a
                     href={proj.githubUrl}
                     target="_blank"
@@ -429,31 +477,52 @@ export function ProjectsSection() {
               {/* Diagnostic Audit Categories (for Auditing Project) */}
               {proj.auditCategories && (
                 <div className="bg-[#f7f3f0] p-4 rounded mb-4 border border-[#e6e2df]">
-                  <div className="flex items-center justify-between pb-2 mb-2 font-mono text-[11px] text-[#434655] border-b border-[#e6e2df]">
+                  <div className="flex flex-wrap items-center justify-between pb-2 mb-2 font-mono text-[11px] text-[#434655] border-b border-[#e6e2df] gap-1">
                     <span>DIAGNOSTIC AUDIT FAMILIES // ENGINE SPEC</span>
                     <span className="text-[#a73a00] font-semibold">
                       RECOMMEND-ONLY JSON
                     </span>
                   </div>
-                  <div className="space-y-1.5 font-mono text-[11px]">
-                    {proj.auditCategories.map((cat) => (
-                      <div
-                        key={cat.id}
-                        className="flex items-start justify-between p-2 rounded bg-white hover:bg-[#ece7e5] transition-colors"
+
+                  {/* Interactive Family Filter */}
+                  <div className="flex flex-wrap gap-1 mb-2.5 font-mono text-[10px]">
+                    {["all", "crawl-access", "render-quotability", "freshness-entity", "engagement-nontext"].map((catId) => (
+                      <button
+                        key={catId}
+                        type="button"
+                        onClick={() => setSelectedAuditFamily(catId)}
+                        className={`px-2 py-0.5 rounded uppercase transition-colors ${
+                          selectedAuditFamily === catId
+                            ? "bg-[#0037b0] text-white font-semibold"
+                            : "bg-[#ece7e5] text-[#434655] hover:text-[#1c1b1a]"
+                        }`}
                       >
-                        <div>
-                          <div className="text-[#1c1b1a] font-semibold">
-                            {cat.title}
-                          </div>
-                          <div className="text-[10px] text-[#434655] font-sans">
-                            {cat.description}
-                          </div>
-                        </div>
-                        <span className="px-2 py-0.5 rounded bg-[#f2edeb] text-[#0037b0] font-bold text-[10px] shrink-0 ml-2">
-                          {cat.family}
-                        </span>
-                      </div>
+                        {catId === "all" ? "ALL (4)" : catId.replace("-", " ")}
+                      </button>
                     ))}
+                  </div>
+
+                  <div className="space-y-1.5 font-mono text-[11px]">
+                    {proj.auditCategories
+                      .filter((c) => selectedAuditFamily === "all" || c.id === selectedAuditFamily)
+                      .map((cat) => (
+                        <div
+                          key={cat.id}
+                          className="flex items-start justify-between p-2 rounded bg-white hover:bg-[#ece7e5] transition-colors border border-transparent hover:border-[#e6e2df]"
+                        >
+                          <div>
+                            <div className="text-[#1c1b1a] font-semibold">
+                              {cat.title}
+                            </div>
+                            <div className="text-[10px] text-[#434655] font-sans">
+                              {cat.description}
+                            </div>
+                          </div>
+                          <span className="px-2 py-0.5 rounded bg-[#f2edeb] text-[#0037b0] font-bold text-[10px] shrink-0 ml-2">
+                            {cat.family}
+                          </span>
+                        </div>
+                      ))}
                   </div>
                 </div>
               )}
