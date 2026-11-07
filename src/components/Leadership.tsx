@@ -8,7 +8,7 @@ export function Leadership() {
   const { leadership } = PORTFOLIO_DATA;
 
   return (
-    <section className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12">
+    <section id="leadership" className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-12">
       <div className="bg-white p-6 sm:p-8 rounded shadow-sm border border-[#e6e2df]">
         <div className="flex flex-col md:flex-row md:items-center justify-between pb-4 mb-4 border-b border-[#e6e2df] gap-3">
           <div className="flex items-center gap-3">

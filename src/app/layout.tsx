@@ -22,27 +22,31 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Harsh Raj // Engineering Portfolio & Systems Dossier",
+  title: "Harsh Raj // AI/ML Engineer & Systems Dossier",
   description:
-    "Personal engineering portfolio of Harsh Raj — Mechatronics & Automation scholar at IIIT Bhagalpur (Minor in CSE). Specializing in Machine Learning, Generative AI, and Multi-Agent Orchestration.",
+    "Engineering portfolio of Harsh Raj — AI/ML Engineer & Mechatronics scholar at IIIT Bhagalpur (Minor in CSE). Specializing in Reinforcement Learning, Generative AI, LangGraph Multi-Agent Systems, and Applied AI Engineering.",
   keywords: [
     "Harsh Raj",
+    "AI/ML Engineer",
     "IIIT Bhagalpur",
-    "Mechatronics",
+    "Reinforcement Learning",
     "Machine Learning",
+    "Deep Learning",
     "Generative AI",
     "LangGraph",
     "CogniSynth",
     "Multi-Agent Systems",
     "Python",
-    "AI-Readiness",
+    "FastAPI",
+    "Brand AI-Readiness",
+    "Synapse Arena",
   ],
   authors: [{ name: "Harsh Raj", url: "https://github.com/harshraj1706" }],
   creator: "Harsh Raj",
   openGraph: {
-    title: "Harsh Raj // Engineering Portfolio & Systems Dossier",
+    title: "Harsh Raj // AI/ML Engineer & Systems Dossier",
     description:
-      "Engineering portfolio of Harsh Raj (IIIT Bhagalpur · 2024–2028). Systems Dossier covering Multi-Agent Systems, Machine Learning, and Applied AI Engineering.",
+      "Engineering portfolio of Harsh Raj (IIIT Bhagalpur · 2024–2028). Systems Dossier covering Multi-Agent Systems, Reinforcement Learning, and Applied AI Engineering.",
     url: "https://github.com/harshraj1706",
     siteName: "Harsh Raj Portfolio",
     locale: "en_US",
