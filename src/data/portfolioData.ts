@@ -88,6 +88,7 @@ export const PORTFOLIO_DATA = {
     github: "https://github.com/harshraj1706",
     codolio: "https://codolio.com/profile/harsh1706",
     resumePdfPath: "/resume.pdf",
+    certificatesDriveUrl: "https://drive.google.com/drive/folders/1s1UjM0SCUzYI3JF_6g5lhxSs2BuJF17G",
     portraitPath: "/images/harsh-raj.jpg",
     portraitFull: "/images/harsh-raj-full.jpg",
     summaryParagraph1:
@@ -572,7 +573,7 @@ export const PORTFOLIO_DATA = {
         "PROTOFOS Tech Fest ’26, IIIT Bhagalpur; developed a competitive reinforcement learning racing agent navigating continuous action trajectories, reward shaping, and obstacle avoidance.",
       link: {
         label: "View Certificates →",
-        url: "/resume.pdf",
+        url: "https://drive.google.com/drive/folders/1s1UjM0SCUzYI3JF_6g5lhxSs2BuJF17G",
       },
     },
     {
@@ -584,7 +585,7 @@ export const PORTFOLIO_DATA = {
         "Machine Learning Challenge at IIIT Bhagalpur (2026); developed predictive statistical models with tailored feature engineering, evaluation metrics, and cross-validation.",
       link: {
         label: "View Certificates →",
-        url: "/resume.pdf",
+        url: "https://drive.google.com/drive/folders/1s1UjM0SCUzYI3JF_6g5lhxSs2BuJF17G",
       },
     },
     {
@@ -620,7 +621,7 @@ export const PORTFOLIO_DATA = {
         "IBM SkillsBuild, Jan 2026; transformer architectures, self-attention mechanisms, and prompt engineering strategies.",
       link: {
         label: "View Certificates →",
-        url: "/resume.pdf",
+        url: "https://drive.google.com/drive/folders/1s1UjM0SCUzYI3JF_6g5lhxSs2BuJF17G",
       },
     },
   ] as Achievement[],

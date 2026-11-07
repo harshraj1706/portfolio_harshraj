@@ -93,11 +93,11 @@ export function EducationAchievements() {
                 <span>Achievements and Certification</span>
               </h2>
               <a
-                href="/resume.pdf"
+                href={PORTFOLIO_DATA.profile.certificatesDriveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-mono text-xs text-[#0037b0] hover:underline inline-flex items-center gap-1 font-semibold bg-[#f2edeb] px-2.5 py-1 rounded border border-[#e6e2df]"
-                title="View verified certificates in Resume PDF"
+                title="View verified certificates on Google Drive"
               >
                 <span>View Certificates</span>
                 <ExternalLink className="w-3.5 h-3.5" />
