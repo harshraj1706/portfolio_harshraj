@@ -276,7 +276,7 @@ export function Hero() {
 
             {/* Specimen Outer Footer */}
             <div className="mt-4 pt-3 flex items-center justify-between font-mono text-[11px] text-[#434655] border-t border-[#e6e2df]">
-              <span>RESEARCH: MULTI-AGENT / ML</span>
+              <span>RESEARCH: MULTI-AGENT / RL / ML</span>
               <span className="text-[#a73a00] font-semibold">2024–2028 BATCH</span>
             </div>
           </div>

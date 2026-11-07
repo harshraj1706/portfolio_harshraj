@@ -5,6 +5,7 @@ import {
   Code2,
   ExternalLink,
   Layers,
+  Activity,
 } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
@@ -86,7 +87,7 @@ export function ProjectsSection() {
                 PROJECT_01 // HERO
               </span>
               <span className="font-mono text-[11px] uppercase text-[#434655] font-medium">
-                AUTONOMOUS RESEARCH · LANGGRAPH
+                AUTONOMOUS RESEARCH · 6-AGENT LANGGRAPH
               </span>
               <span className="font-mono text-[11px] text-[#434655]">
                 {heroProject.timeline}
@@ -140,15 +141,19 @@ export function ProjectsSection() {
               <div className="space-y-2 font-mono text-[11px]">
                 <div className="flex justify-between pb-1 border-b border-[#e6e2df]">
                   <span className="text-[#434655]">ORCHESTRATOR:</span>
-                  <span className="font-semibold text-[#1c1b1a]">LangGraph + LangChain</span>
+                  <span className="font-semibold text-[#1c1b1a]">LangGraph (6 Agents)</span>
                 </div>
                 <div className="flex justify-between pb-1 border-b border-[#e6e2df]">
                   <span className="text-[#434655]">SEARCH HARVESTER:</span>
-                  <span className="font-semibold text-[#1c1b1a]">Tavily Search API</span>
+                  <span className="font-semibold text-[#1c1b1a]">Tavily API + BS4</span>
                 </div>
                 <div className="flex justify-between pb-1 border-b border-[#e6e2df]">
-                  <span className="text-[#434655]">MODELS:</span>
-                  <span className="font-semibold text-[#1c1b1a]">Gemini 3.8 / 3.6 Flash</span>
+                  <span className="text-[#434655]">VERIFICATION:</span>
+                  <span className="font-semibold text-[#1c1b1a]">Contradiction Detection</span>
+                </div>
+                <div className="flex justify-between pb-1 border-b border-[#e6e2df]">
+                  <span className="text-[#434655]">SEMANTIC MEMORY:</span>
+                  <span className="font-semibold text-[#1c1b1a]">Local TF-IDF (&lt;5 ms)</span>
                 </div>
                 <div className="flex justify-between pb-1 border-b border-[#e6e2df]">
                   <span className="text-[#434655]">DEPLOYMENT:</span>
@@ -173,23 +178,48 @@ export function ProjectsSection() {
             </div>
           </div>
 
-          {/* Interactive State Graph Nodes */}
+          {/* Quantified Telemetry Strip */}
+          {heroProject.metrics && (
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-6">
+              {heroProject.metrics.map((m, idx) => (
+                <div
+                  key={idx}
+                  className="bg-[#f7f3f0] p-3 rounded border border-[#e6e2df] flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-mono text-[10px] text-[#434655] uppercase tracking-wider font-semibold">
+                      {m.label}
+                    </span>
+                    <Activity className="w-3.5 h-3.5 text-[#0037b0]" />
+                  </div>
+                  <div className="text-lg font-bold text-[#1c1b1a] font-mono">
+                    {m.value}
+                  </div>
+                  <div className="font-mono text-[10.5px] text-[#434655] mt-0.5">
+                    {m.detail}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* Interactive State Graph Nodes (6 Active Agents) */}
           <div className="bg-[#f7f3f0] p-5 sm:p-6 rounded mb-6 border border-[#e6e2df]">
             <div className="flex flex-wrap items-center justify-between mb-4 gap-2">
               <span className="font-mono text-xs font-bold text-[#1c1b1a] uppercase tracking-wider flex items-center gap-2">
                 <Layers className="w-4 h-4 text-[#0037b0]" />
-                <span>WORKFLOW ARCHITECTURE SCHEMATIC (STATE GRAPH)</span>
+                <span>6 ACTIVE AGENTS WORKFLOW ARCHITECTURE (STATE GRAPH)</span>
               </span>
               <span className="font-mono text-[11px] text-[#434655] bg-[#f2edeb] px-2 py-0.5 rounded border border-[#e6e2df]">
-                SELECT ANY NODE TO INSPECT
+                SELECT ANY AGENT TO INSPECT
               </span>
             </div>
 
-            {/* Nodes Grid */}
+            {/* Nodes Grid: 6 Agents */}
             <div
               role="radiogroup"
               aria-label="CogniSynth Workflow Nodes"
-              className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3"
+              className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5"
             >
               {heroProject.workflowNodes?.map((node) => {
                 const isSelected = activeWorkflowNode === node.id;
@@ -206,15 +236,15 @@ export function ProjectsSection() {
                         setActiveWorkflowNode(node.id);
                       }
                     }}
-                    className={`p-3.5 rounded cursor-pointer transition-all shadow-xs hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0037b0] ${
+                    className={`p-3 rounded cursor-pointer transition-all shadow-xs hover:scale-[1.02] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0037b0] ${
                       isSelected
                         ? "ring-2 ring-[#0037b0] bg-[#f2edeb] border-transparent"
                         : "bg-white border border-[#e6e2df] hover:border-[#747686]"
                     }`}
                   >
                     <div className="flex items-center justify-between">
-                      <span className="font-mono text-[11px] text-[#0037b0] font-bold">
-                        NODE 0{node.id}
+                      <span className="font-mono text-[10px] text-[#0037b0] font-bold">
+                        AGENT 0{node.id}
                       </span>
                       <span
                         className={`w-2 h-2 rounded-full ${
@@ -222,10 +252,10 @@ export function ProjectsSection() {
                         }`}
                       />
                     </div>
-                    <div className="text-sm font-semibold text-[#1c1b1a] mt-1">
+                    <div className="text-xs font-semibold text-[#1c1b1a] mt-1 leading-snug">
                       {node.name}
                     </div>
-                    <div className="font-mono text-[10px] text-[#434655] mt-1">
+                    <div className="font-mono text-[9.5px] text-[#434655] mt-1">
                       {node.stage}
                     </div>
                   </div>
@@ -238,7 +268,7 @@ export function ProjectsSection() {
               <div className="mt-4 p-4 rounded bg-[#ece7e5] border border-[#e6e2df] font-mono text-xs text-[#1c1b1a] animate-in fade-in duration-200">
                 <div className="flex flex-wrap items-center justify-between border-b border-[#e6e2df] pb-2 mb-2 gap-2">
                   <strong className="text-[#0037b0] font-mono text-xs">
-                    [NODE 0{currentNode.id}: {currentNode.name.toUpperCase()} — {currentNode.role}]
+                    [AGENT 0{currentNode.id}: {currentNode.name.toUpperCase()} — {currentNode.role}]
                   </strong>
                   <span className="text-[11px] text-[#434655]">
                     VERIFIED IN COGNISYNTH REPOSITORY
@@ -359,7 +389,44 @@ export function ProjectsSection() {
                 {proj.summary}
               </p>
 
-              {/* Specialized Project Details */}
+              {/* Quantified Metrics Strip for Secondary Projects */}
+              {proj.metrics && (
+                <div className="grid grid-cols-2 gap-2.5 mb-4">
+                  {proj.metrics.map((m, idx) => (
+                    <div
+                      key={idx}
+                      className="bg-[#f7f3f0] p-2.5 rounded border border-[#e6e2df] flex flex-col justify-between"
+                    >
+                      <div className="font-mono text-[9.5px] text-[#434655] uppercase tracking-wider font-semibold">
+                        {m.label}
+                      </div>
+                      <div className="text-sm font-bold text-[#1c1b1a] font-mono mt-0.5">
+                        {m.value}
+                      </div>
+                      <div className="font-mono text-[10px] text-[#434655] mt-0.5">
+                        {m.detail}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {/* Project Highlights */}
+              <div className="bg-[#f7f3f0] p-4 rounded mb-4 space-y-2 border border-[#e6e2df]">
+                <div className="font-mono text-xs text-[#1c1b1a] font-semibold flex items-center justify-between">
+                  <span>KEY VERIFIED HIGHLIGHTS:</span>
+                  <span className="text-[#a73a00] font-mono text-[11px]">
+                    PRODUCTION SPEC
+                  </span>
+                </div>
+                <ul className="text-xs text-[#434655] space-y-1.5 list-disc list-inside leading-relaxed">
+                  {proj.highlights.map((highlight, idx) => (
+                    <li key={idx}>{highlight}</li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Diagnostic Audit Categories (for Auditing Project) */}
               {proj.auditCategories && (
                 <div className="bg-[#f7f3f0] p-4 rounded mb-4 border border-[#e6e2df]">
                   <div className="flex items-center justify-between pb-2 mb-2 font-mono text-[11px] text-[#434655] border-b border-[#e6e2df]">
@@ -388,22 +455,6 @@ export function ProjectsSection() {
                       </div>
                     ))}
                   </div>
-                </div>
-              )}
-
-              {proj.isUndeployed && (
-                <div className="bg-[#f7f3f0] p-4 rounded mb-4 space-y-2 border border-[#e6e2df]">
-                  <div className="font-mono text-xs text-[#1c1b1a] font-semibold flex items-center justify-between">
-                    <span>KEY CONTRIBUTIONS &amp; ARCHITECTURE:</span>
-                    <span className="text-[#a73a00] font-mono text-[11px]">
-                      TEAM REPO · SIH &apos;26
-                    </span>
-                  </div>
-                  <ul className="text-xs text-[#434655] space-y-1.5 list-disc list-inside leading-relaxed">
-                    {proj.highlights.map((highlight, idx) => (
-                      <li key={idx}>{highlight}</li>
-                    ))}
-                  </ul>
                 </div>
               )}
             </div>

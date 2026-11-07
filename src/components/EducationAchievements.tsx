@@ -1,9 +1,20 @@
 "use client";
 
 import React from "react";
-import { GraduationCap, Award, ExternalLink, Trophy, Code2, BookOpen } from "lucide-react";
+import {
+  GraduationCap,
+  Award,
+  ExternalLink,
+  Trophy,
+  Code2,
+  BookOpen,
+  Zap,
+} from "lucide-react";
+import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 export function EducationAchievements() {
+  const { education, achievements } = PORTFOLIO_DATA;
+
   return (
     <section id="education" className="w-full bg-[#f7f3f0] py-16 border-t border-[#e6e2df]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
@@ -28,47 +39,47 @@ export function EducationAchievements() {
               <div className="flex items-center justify-between pb-2 mb-2 font-mono text-[11px] text-[#434655]">
                 <span className="text-[#0037b0] font-bold">2024 — 2028</span>
                 <span className="px-2 py-0.5 rounded bg-[#dce1ff] text-[#001551] font-semibold">
-                  CURRENT UNDERGRADUATE
+                  {education[0].status}
                 </span>
               </div>
               <h3 className="text-base font-bold text-[#1c1b1a]">
-                Indian Institute of Information Technology (IIIT) Bhagalpur
+                {education[0].institution}
               </h3>
               <div className="text-xs text-[#434655] mt-1 font-medium">
-                B.Tech in Mechatronics and Automation Engineering
+                {education[0].degree}
               </div>
               <div className="font-mono text-xs text-[#a73a00] mt-1 font-semibold">
-                Minor in Computer Science and Engineering (CSE), IIIT Bhagalpur
+                {education[0].minor}
               </div>
               <p className="text-xs text-[#434655] mt-3 leading-relaxed">
-                Interdisciplinary engineering curriculum combining classical kinematics, sensor systems, control feedback loops, with data structures, algorithms, operating systems, and deep learning.
+                {education[0].details}
               </p>
               <div className="mt-4 pt-3 flex items-center justify-between font-mono text-[11px] text-[#434655] border-t border-[#e6e2df]">
                 <span>CUMULATIVE GRADE POINT AVERAGE:</span>
                 <span className="font-bold text-[#1c1b1a] bg-[#f2edeb] px-2.5 py-1 rounded border border-[#e6e2df]">
-                  7.81 / 10.0
+                  {education[0].cgpa}
                 </span>
               </div>
             </div>
 
-            {/* Schooling Card (Class XII only, No Class X) */}
+            {/* Schooling Card (Class XII) */}
             <div className="bg-white p-6 rounded shadow-sm hover:shadow-md transition-shadow border border-[#e6e2df]">
               <div className="flex items-center justify-between pb-2 mb-2 font-mono text-[11px] text-[#434655]">
                 <span>SENIOR SECONDARY</span>
                 <span className="px-2 py-0.5 rounded bg-[#ece7e5] text-[#1c1b1a] font-semibold">
-                  CBSE BOARD
+                  {education[1].status}
                 </span>
               </div>
               <h3 className="text-base font-bold text-[#1c1b1a]">
-                New Holy Ganges Public School, Khagaria, Bihar
+                {education[1].institution}
               </h3>
               <div className="text-xs text-[#434655] mt-1">
-                Class XII Board Examination (CBSE)
+                {education[1].degree}
               </div>
               <div className="mt-4 pt-3 flex items-center justify-between font-mono text-[11px] text-[#434655] border-t border-[#e6e2df]">
                 <span>STANDARDIZED AGGREGATE:</span>
                 <span className="font-bold text-[#1c1b1a] bg-[#f2edeb] px-2.5 py-1 rounded border border-[#e6e2df]">
-                  84.0%
+                  {education[1].cgpa}
                 </span>
               </div>
             </div>
@@ -79,7 +90,7 @@ export function EducationAchievements() {
             <div className="flex items-center justify-between pb-1">
               <h2 className="text-2xl text-[#1c1b1a] tracking-tight font-semibold flex items-center gap-2">
                 <Trophy className="w-5 h-5 text-[#a73a00]" />
-                <span>Honors &amp; Achievements</span>
+                <span>Achievements and Certification</span>
               </h2>
               <a
                 href="/resume.pdf"
@@ -93,91 +104,80 @@ export function EducationAchievements() {
               </a>
             </div>
 
-            {/* Achievement 1: AI-Verse 2026 */}
-            <div className="bg-white p-5 rounded shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-start gap-4 border border-[#e6e2df]">
-              <div className="w-10 h-10 rounded bg-[#dce1ff] flex items-center justify-center shrink-0 text-[#001551]">
-                <Award className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-bold text-[#1c1b1a]">
-                    3rd Place — AI-Verse 2026 Machine Learning Challenge
-                  </h3>
-                  <span className="font-mono text-[11px] text-[#0037b0] font-semibold">
-                    COMPETITION
-                  </span>
-                </div>
-                <p className="text-xs text-[#434655] mt-1 leading-relaxed">
-                  Machine Learning Challenge held at IIIT Bhagalpur (2026); formulated statistical learning models with tailored feature engineering and cross-validation rigor.
-                </p>
-              </div>
-            </div>
+            {/* Achievements List */}
+            {achievements.map((item) => {
+              const isSynapse = item.id === "synapse-arena";
+              const isAiVerse = item.id === "ai-verse";
+              const isSih = item.id === "sih-2026";
+              const isDsa = item.id === "dsa-codolio";
+              const isIbm = item.id === "ibm-llm";
 
-            {/* Achievement 2: SIH 2026 Internal */}
-            <div className="bg-white p-5 rounded shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-start gap-4 border border-[#e6e2df]">
-              <div className="w-10 h-10 rounded bg-[#ffdbce] flex items-center justify-center shrink-0 text-[#370e00]">
-                <Trophy className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-bold text-[#1c1b1a]">
-                    2nd Place — SIH &apos;26 Internal Hackathon (Team Reflexes)
-                  </h3>
-                  <span className="font-mono text-[11px] text-[#a73a00] font-semibold">
-                    TEAM AWARD
-                  </span>
-                </div>
-                <p className="text-xs text-[#434655] mt-1 leading-relaxed">
-                  Recognized with Team Reflexes at IIIT Bhagalpur for MediReach, implementing LLM patient-intake workflows, protocol review, prescription OCR, and voice assistance.
-                </p>
-              </div>
-            </div>
+              let icon = <Award className="w-5 h-5" />;
+              let iconBoxBg = "bg-[#dce1ff] text-[#001551]";
+              let badgeColor = "text-[#0037b0]";
 
-            {/* Achievement 3: 200+ DSA Codolio */}
-            <div className="bg-white p-5 rounded shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-start gap-4 border border-[#e6e2df]">
-              <div className="w-10 h-10 rounded bg-[#ece7e5] flex items-center justify-center shrink-0 text-[#1c1b1a]">
-                <Code2 className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-bold text-[#1c1b1a]">
-                    200+ DSA Problems Solved
-                  </h3>
-                  <a
-                    href="https://codolio.com/profile/harsh1706"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-mono text-[11px] text-[#0037b0] hover:underline inline-flex items-center gap-1 font-semibold"
+              if (isSynapse) {
+                icon = <Zap className="w-5 h-5" />;
+                iconBoxBg = "bg-[#ffe082] text-[#5d4037]";
+                badgeColor = "text-[#b26a00]";
+              } else if (isAiVerse) {
+                icon = <Award className="w-5 h-5" />;
+                iconBoxBg = "bg-[#dce1ff] text-[#001551]";
+                badgeColor = "text-[#0037b0]";
+              } else if (isSih) {
+                icon = <Trophy className="w-5 h-5" />;
+                iconBoxBg = "bg-[#ffdbce] text-[#370e00]";
+                badgeColor = "text-[#a73a00]";
+              } else if (isDsa) {
+                icon = <Code2 className="w-5 h-5" />;
+                iconBoxBg = "bg-[#ece7e5] text-[#1c1b1a]";
+                badgeColor = "text-[#1c1b1a]";
+              } else if (isIbm) {
+                icon = <BookOpen className="w-5 h-5" />;
+                iconBoxBg = "bg-[#d5e3fc] text-[#0d1c2e]";
+                badgeColor = "text-[#434655]";
+              }
+
+              return (
+                <div
+                  key={item.id}
+                  className="bg-white p-5 rounded shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-start gap-4 border border-[#e6e2df]"
+                >
+                  <div
+                    className={`w-10 h-10 rounded ${iconBoxBg} flex items-center justify-center shrink-0`}
                   >
-                    <span>Codolio Profile</span>
-                    <ExternalLink className="w-3 h-3" />
-                  </a>
+                    {icon}
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center justify-between gap-2">
+                      <h3 className="text-sm font-bold text-[#1c1b1a]">
+                        {item.title}
+                      </h3>
+                      {item.link ? (
+                        <a
+                          href={item.link.url}
+                          target={item.link.url.startsWith("http") ? "_blank" : undefined}
+                          rel={item.link.url.startsWith("http") ? "noopener noreferrer" : undefined}
+                          className="font-mono text-[11px] text-[#0037b0] hover:underline inline-flex items-center gap-1 font-semibold shrink-0"
+                        >
+                          <span>{item.badge}</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      ) : (
+                        <span
+                          className={`font-mono text-[11px] font-semibold shrink-0 ${badgeColor}`}
+                        >
+                          {item.badge}
+                        </span>
+                      )}
+                    </div>
+                    <p className="text-xs text-[#434655] mt-1 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
                 </div>
-                <p className="text-xs text-[#434655] mt-1 leading-relaxed">
-                  Active algorithmic problem solving in C++ and Python covering graph theory, dynamic programming, trees, and computational complexity.
-                </p>
-              </div>
-            </div>
-
-            {/* Achievement 4: IBM LLM Certification */}
-            <div className="bg-white p-5 rounded shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex items-start gap-4 border border-[#e6e2df]">
-              <div className="w-10 h-10 rounded bg-[#d5e3fc] flex items-center justify-center shrink-0 text-[#0d1c2e]">
-                <BookOpen className="w-5 h-5" />
-              </div>
-              <div className="flex-1">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-bold text-[#1c1b1a]">
-                    Introduction to Large Language Models
-                  </h3>
-                  <span className="font-mono text-[11px] text-[#434655]">
-                    CERTIFICATION
-                  </span>
-                </div>
-                <p className="text-xs text-[#434655] mt-1 leading-relaxed">
-                  IBM SkillsBuild (Jan 2026, 1.5-hour course); core mechanisms of generative transformers, attention architectures, and prompting strategies.
-                </p>
-              </div>
-            </div>
+              );
+            })}
           </div>
         </div>
       </div>

@@ -15,6 +15,11 @@ export interface Project {
   stack: string[];
   summary: string;
   highlights: string[];
+  metrics?: {
+    label: string;
+    value: string;
+    detail?: string;
+  }[];
   workflowNodes?: {
     id: number;
     name: string;
@@ -68,14 +73,14 @@ export const PORTFOLIO_DATA = {
     institution: "Indian Institute of Information Technology, Bhagalpur",
     shortInstitution: "IIIT Bhagalpur",
     department: "Mechatronics and Automation Engineering",
-    degree: "B.Tech in Mechatronics and Automation Engineering",
-    minor: "Minor in Computer Science and Engineering (CSE)",
+    degree: "B.Tech. in Mechatronics and Automation Engineering",
+    minor: "Minor in Computer Science and Engineering (CSE), IIIT Bhagalpur",
     batch: "2024–2028",
     cgpa: "7.81 / 10.0",
     seniorSecondary: {
       school: "New Holy Ganges Public School, Khagaria, Bihar",
-      board: "Class XII (CBSE)",
-      percentage: "84.0%",
+      board: "Class XII",
+      percentage: "84%",
     },
     email: "harshraj17060@gmail.com",
     phone: "+91 7870259081",
@@ -86,9 +91,9 @@ export const PORTFOLIO_DATA = {
     portraitPath: "/images/harsh-raj.jpg",
     portraitFull: "/images/harsh-raj-full.jpg",
     summaryParagraph1:
-      "Mechatronics and Automation Engineering scholar at IIIT Bhagalpur (2024–2028 · CGPA 7.81/10) with a Minor in Computer Science and Engineering (CSE). Advancing at the intersection of mathematical machine learning, generative & agentic orchestration, and physical automation loops.",
+      "Mechatronics and Automation Engineering scholar at IIIT Bhagalpur (2024–2028 · CGPA 7.81/10) with a Minor in Computer Science and Engineering (CSE). Advancing at the intersection of mathematical machine learning, reinforcement learning policies, generative agentic orchestration, and physical automation loops.",
     summaryParagraph2:
-      "From formulating empirical neural architectures to deploying distributed multi-agent research loops and cloud microservices, I engineer practical software systems that perceive, plan, and reliably execute.",
+      "From training competitive reinforcement learning agents to deploying distributed multi-agent research graphs and production auditing engines, I engineer practical software systems that perceive, verify, and reliably execute.",
     fieldNotesQuote:
       "I started in mechatronics understanding how physical actuators and sensor loops respond to real-world dynamics. That naturally led me to intelligence: how software can perceive, reason, and act. Today, I build end-to-end applications that range from multi-agent research pipelines to web auditing systems.",
   },
@@ -96,11 +101,18 @@ export const PORTFOLIO_DATA = {
   disciplines: [
     {
       id: "01",
-      title: "Machine Learning, Deep Learning & Data Science",
-      subtitle: "Empirical Architectures, Statistical Modeling & Ensembles",
+      title: "Machine Learning, Deep Learning & RL",
+      subtitle: "Empirical Architectures, Policy Optimization & Ensembles",
       description:
-        "Developing empirical neural networks, supervised & unsupervised classifiers, and ensemble methods with statistical feature engineering, model evaluation, cross-validation, and hyperparameter optimization.",
-      tags: ["PyTorch", "Scikit-learn", "TensorFlow/Keras", "Ensemble Methods", "Cross-Validation", "Feature Engineering"],
+        "Developing empirical neural networks, supervised & unsupervised classifiers, and reinforcement learning agents (such as the 2nd Place Synapse Arena racing policy), supported by rigorous statistical feature engineering, model evaluation, cross-validation, and hyperparameter optimization.",
+      tags: [
+        "PyTorch",
+        "Scikit-learn",
+        "Reinforcement Learning",
+        "TensorFlow/Keras",
+        "Ensemble Methods",
+        "Cross-Validation",
+      ],
       color: "primary",
     },
     {
@@ -108,17 +120,34 @@ export const PORTFOLIO_DATA = {
       title: "Generative & Agentic AI Systems",
       subtitle: "LangGraph, Swarm Orchestration, Tool Calling & RAG",
       description:
-        "Orchestrating stateful agents capable of autonomous research, tool execution, claim verification, contradiction detection, and structured reporting across distributed LLM workflows.",
-      tags: ["LangGraph", "LangChain", "LLMs", "Tool Calling", "RAG", "Multi-Agent Systems", "SentenceTransformers"],
+        "Orchestrating stateful agents capable of autonomous research, tool execution, evidence-linked claim verification, contradiction detection, and structured reporting across distributed LLM workflows with telemetry tracking.",
+      tags: [
+        "LangGraph",
+        "LangChain",
+        "LLMs",
+        "Tool Calling",
+        "RAG",
+        "Multi-Agent Systems",
+        "SentenceTransformers",
+      ],
       color: "secondary",
     },
     {
       id: "03",
       title: "Applied AI, Cloud Deployment & NLP/CV",
-      subtitle: "Microservices, AWS EC2, Spaces, OCR & Processing Pipelines",
+      subtitle: "FastAPI Microservices, React, AWS EC2, Spaces & OCR",
       description:
-        "Transforming experimental algorithms into dependable microservices with FastAPI, REST APIs, Supabase, AWS EC2, and Hugging Face Spaces, integrated with text/image processing and OCR pipelines.",
-      tags: ["FastAPI", "AWS EC2", "Hugging Face Spaces", "Streamlit", "Pydantic", "Supabase", "OCR (Tesseract.js)"],
+        "Transforming experimental algorithms into dependable full-stack applications with FastAPI, REST APIs, React, Supabase, SQLite, AWS EC2, and Hugging Face Spaces, integrated with text/image processing and OCR pipelines.",
+      tags: [
+        "FastAPI",
+        "React",
+        "AWS EC2",
+        "Hugging Face Spaces",
+        "Streamlit",
+        "Pydantic",
+        "SQLite",
+        "OCR",
+      ],
       color: "tertiary",
     },
   ],
@@ -128,10 +157,10 @@ export const PORTFOLIO_DATA = {
       id: "languages",
       category: "core",
       categoryCode: "CATEGORY // CORE_LANG",
-      title: "Programming Languages",
+      title: "Languages",
       countLabel: "2 RUNTIMES",
       skills: ["Python", "C++"],
-      description: "Algorithmic problem solving, numerical simulations, and embedded hardware bridges.",
+      description: "Algorithmic problem solving, numerical simulations, machine learning backends, and embedded hardware bridges.",
     },
     {
       id: "data_science",
@@ -146,25 +175,26 @@ export const PORTFOLIO_DATA = {
         "Feature Engineering",
         "Data Visualization",
       ],
-      description: "Rigorous tabular dataset hygiene, exploratory modeling, and statistical validation.",
+      description: "Rigorous tabular dataset hygiene, distribution modeling, exploratory statistical analysis, and feature curation.",
     },
     {
       id: "classical_ml",
       category: "ml",
-      categoryCode: "CATEGORY // CLASSICAL_ML",
+      categoryCode: "CATEGORY // MACHINE_LEARNING",
       title: "Machine Learning",
-      countLabel: "8 TECHNIQUES",
+      countLabel: "9 TECHNIQUES",
       skills: [
         "Scikit-learn",
         "Supervised Learning",
         "Unsupervised Learning",
         "Classification & Regression",
         "Ensemble Methods",
+        "Reinforcement Learning",
         "Model Evaluation",
         "Cross-Validation",
         "Hyperparameter Optimization",
       ],
-      description: "Gradient boosting, ensemble bagging/stacking, ROC-AUC calibration, and loss minimization.",
+      description: "Gradient boosting, ensemble bagging/stacking, RL Markov decision policies (racing agents), and loss minimization.",
     },
     {
       id: "deep_learning",
@@ -179,7 +209,7 @@ export const PORTFOLIO_DATA = {
         "CNNs",
         "Transfer Learning",
       ],
-      description: "Spatial representation learning, convolutional backbones, and gradient propagation.",
+      description: "Spatial representation learning, convolutional backbones, backpropagation dynamics, and fine-tuning pretrained weights.",
     },
     {
       id: "nlp_cv",
@@ -194,7 +224,7 @@ export const PORTFOLIO_DATA = {
         "OCR",
         "Image Processing",
       ],
-      description: "Dense semantic representations, multimodal tokenization, and visual text extraction.",
+      description: "Dense semantic representations, tokenization, transformer attention heads, and prescription/label OCR extraction.",
     },
     {
       id: "gen_ai",
@@ -214,42 +244,47 @@ export const PORTFOLIO_DATA = {
         "Hugging Face Transformers",
         "SentenceTransformers",
       ],
-      description: "Autonomous actor graphs, state synchronization, dynamic tool calling, and dense vector search.",
+      description: "Autonomous actor graphs, state synchronization, dynamic tool calling, contradiction engines, and dense vector search.",
     },
     {
-      id: "backend_deployment",
+      id: "backend_frontend_deployment",
       category: "backend",
-      categoryCode: "CATEGORY // BACKEND_CLOUD",
-      title: "Backend, Deployment & Tools",
-      countLabel: "11 FRAMEWORKS",
+      categoryCode: "CATEGORY // BACKEND_FRONTEND",
+      title: "Backend, Frontend & Deployment",
+      countLabel: "9 FRAMEWORKS",
       skills: [
         "FastAPI",
-        "Streamlit",
-        "Pydantic",
         "REST APIs",
+        "Pydantic",
+        "React",
+        "Streamlit",
         "Supabase",
+        "SQLite",
         "AWS EC2",
         "Hugging Face Spaces",
+      ],
+      description: "Production FastAPI microservices, React frontends, Pydantic schemas, SQLite persistence, and cloud runtimes.",
+    },
+    {
+      id: "testing_tools_cs",
+      category: "core",
+      categoryCode: "CATEGORY // TESTING_TOOLS_CS",
+      title: "Testing, Tools & CS Fundamentals",
+      countLabel: "11 COMPETENCIES",
+      skills: [
+        "Pytest",
+        "unittest",
+        "API & Integration Testing",
         "Git",
         "GitHub",
         "BeautifulSoup",
         "lxml",
-      ],
-      description: "Cloud EC2 instances, production FastAPI microservices, strict Pydantic schemas, and web harvesting.",
-    },
-    {
-      id: "cs_fundamentals",
-      category: "core",
-      categoryCode: "CATEGORY // CS_FOUNDATIONS",
-      title: "CS Fundamentals",
-      countLabel: "4 DISCIPLINES",
-      skills: [
         "OOP",
         "DBMS",
         "Operating Systems",
-        "Data Structures & Algorithms",
+        "Data Structures and Algorithms",
       ],
-      description: "200+ DSA problems solved on Codolio; object-oriented design and systems architecture.",
+      description: "Pytest/unittest test suites, API self-test fixtures, Git/GitHub version control, web parsing, and 200+ DSA problems solved on Codolio.",
     },
   ] as SkillGroup[],
 
@@ -270,16 +305,38 @@ export const PORTFOLIO_DATA = {
       isUndeployed: false,
       stack: ["Python", "LangGraph", "Gemini", "Tavily", "FastAPI", "Streamlit"],
       summary:
-        "A multi-agent research workflow that decomposes a topic into research tasks and coordinates web search, page extraction, claim analysis, verification, synthesis, and report generation.",
+        "A LangGraph-based research workflow orchestrating 6 active agents to decompose topics, research web sources, extract evidence, verify claims, synthesize findings, and generate reports.",
       highlights: [
-        "Built a multi-agent research workflow that decomposes a topic into research tasks and coordinates web search, page extraction, claim analysis, verification, synthesis, and report generation.",
-        "Implemented evidence-linked claims, source-quality scoring, contradiction detection, and persistent local semantic memory to make findings more traceable and easier to review.",
-        "Developed a Streamlit dashboard with FastAPI endpoints and server-sent events (SSE), enabling users to submit research requests and follow workflow progress as results are produced.",
+        "Built a LangGraph-based research workflow orchestrating 6 active agents to decompose topics, research web sources, extract evidence, verify claims, synthesize findings, and generate reports.",
+        "Implemented evidence-linked claim verification and contradiction detection; processed 41 claims and identified 13 contradictions across 4 production runs.",
+        "Integrated FastAPI/SSE streaming, telemetry, and local TF-IDF semantic memory with under 5 ms top-4 retrieval; telemetry showed an estimated mean LLM cost of $0.00249 per completed run (n=4).",
+      ],
+      metrics: [
+        {
+          label: "ACTIVE AGENTS",
+          value: "6",
+          detail: "LangGraph state machine orchestration",
+        },
+        {
+          label: "CLAIMS VERIFIED",
+          value: "41 / 13",
+          detail: "41 claims parsed · 13 contradictions flagged (4 runs)",
+        },
+        {
+          label: "SEMANTIC RETRIEVAL",
+          value: "< 5 ms",
+          detail: "Local TF-IDF top-4 semantic memory lookup",
+        },
+        {
+          label: "MEAN LLM COST",
+          value: "$0.00249",
+          detail: "Estimated mean cost per completed run (n=4)",
+        },
       ],
       workflowNodes: [
         {
           id: 1,
-          name: "Task DAG Planner",
+          name: "Topic Decomposer",
           stage: "PLANNING LAYER",
           role: "Dynamic Objective Decomposition",
           description:
@@ -287,7 +344,7 @@ export const PORTFOLIO_DATA = {
         },
         {
           id: 2,
-          name: "Researcher & Scraper",
+          name: "Web Source Researcher",
           stage: "DISCOVERY SWARM",
           role: "Tavily API & BeautifulSoup",
           description:
@@ -303,19 +360,27 @@ export const PORTFOLIO_DATA = {
         },
         {
           id: 4,
-          name: "Verifier & Conflict Detector",
+          name: "Claim Verifier",
           stage: "EVALUATION LAYER",
-          role: "Contradiction Engine & Quality Scoring",
+          role: "Contradiction Engine & Verification",
           description:
-            "Evaluates multi-factor source quality scores, cross-references claims to uncover numerical discrepancies, and generates explicit conflict records.",
+            "Evaluates multi-factor source quality scores, cross-references claims to uncover numerical discrepancies, and flags explicit contradictions (13 identified across 4 runs).",
         },
         {
           id: 5,
-          name: "Analyst & Reporter",
+          name: "Findings Synthesizer",
           stage: "SYNTHESIS LAYER",
-          role: "Report Generation & Vector Store",
+          role: "Thematic Deduplication & TF-IDF Memory",
           description:
-            "Compiles coherent, thematic Markdown briefs with inline citations, streams real-time SSE progress, and persists intelligence into local vector memory.",
+            "Aggregates verified claims, resolves cross-source tensions, structures insights into thematic threads, and indexes findings in local TF-IDF semantic memory (<5 ms retrieval).",
+        },
+        {
+          id: 6,
+          name: "Report Generator",
+          stage: "DELIVERY LAYER",
+          role: "Streaming Markdown & SSE Publisher",
+          description:
+            "Compiles coherent, thematic briefs with inline citations, streams real-time SSE progress to the Streamlit UI, and logs telemetry metrics ($0.00249 mean LLM cost/run).",
         },
       ],
       dossierTabs: [
@@ -324,28 +389,28 @@ export const PORTFOLIO_DATA = {
           label: "01 // OBJECTIVE",
           heading: "Autonomous Grounded Research",
           content:
-            "CogniSynth transforms autonomous multi-agent research into a measurable, evidence-grounded AI research platform. Rather than relying on simple prompt chaining, it dynamically decomposes objectives into Directed Acyclic Graphs (DAGs) and verifies propositions against indexed evidence.",
+            "CogniSynth transforms autonomous multi-agent research into a measurable, evidence-grounded AI research platform. Rather than relying on simple prompt chaining, it orchestrates 6 distinct agents to decompose objectives into Directed Acyclic Graphs (DAGs) and verify propositions against verbatim indexed evidence.",
         },
         {
           id: "architecture",
           label: "02 // ARCHITECTURE",
-          heading: "Stateful LangGraph Orchestration",
+          heading: "Stateful LangGraph Orchestration & SSE",
           content:
-            "Engineered around LangGraph stateful machines with conditional transitions, retry backoff with jitter between Gemini models, explicit conflict loops, and zero-dependency local semantic vector memory for querying prior research sessions.",
+            "Engineered around LangGraph stateful machines with conditional transitions, retry backoff with jitter across Gemini models, explicit conflict loops, FastAPI/SSE streaming, and zero-dependency local TF-IDF semantic memory achieving sub-5ms top-4 retrieval.",
         },
         {
           id: "capabilities",
-          label: "03 // CAPABILITIES",
+          label: "03 // METRICS & TELEMETRY",
           heading: "Verified Claims & Contradiction Detection",
           content:
-            "Extracts atomic proposition claims with verbatim evidence snippets, computes source reliability through domain authority and freshness signals, flags numerical discrepancies, and provides real-time execution observability via Server-Sent Events (SSE).",
+            "Extracts atomic proposition claims with verbatim evidence snippets. Across 4 production runs, the engine processed 41 claims and isolated 13 contradictions, with runtime telemetry establishing an estimated mean LLM cost of $0.00249 per run.",
         },
         {
           id: "implementation",
           label: "04 // LESSONS LEARNED",
           heading: "Bounded Execution & Evidence Rigor",
           content:
-            "Preventing multi-agent hallucination loops requires anchoring every assertion to physical source snippets, enforcing strict Pydantic validation schemas at every node boundary, and bounding crawler depth to guarantee predictable completion times.",
+            "Preventing multi-agent hallucination loops requires anchoring every assertion to physical source snippets, enforcing strict Pydantic validation schemas at every node boundary, and bounding crawler depth to guarantee predictable completion times and low inference overhead.",
         },
       ],
     },
@@ -365,11 +430,33 @@ export const PORTFOLIO_DATA = {
       isUndeployed: false,
       stack: ["Python", "Web Crawling", "HTML Parsing", "JSON", "FastAPI", "React"],
       summary:
-        "Developed an audit engine that assesses crawler access, HTML quotability, structured brand/entity information, content freshness, user-action pathways, and barriers caused by non-text content.",
+        "A FastAPI/React website-auditing engine spanning 11 AI-readiness categories and 35 distinct checks (24 test-covered), with 0–100 citability scoring and automated Schema.org/robots.txt remediation snippets; achieved 94.4% audit completion across 18 real-world domains.",
       highlights: [
-        "Developed an audit engine that assesses crawler access, HTML quotability, structured brand/entity information, content freshness, user-action pathways, and barriers caused by non-text content.",
-        "Added checks for crawler directives, sitemap and metadata signals, structured information, and content discoverability to identify issues that may limit website visibility to AI-driven systems.",
-        "Built a bounded, robots-aware crawling pipeline that returns structured JSON findings with supporting evidence, severity-ranked recommendations, and verification steps to help reduce false positives.",
+        "Built a FastAPI/React website-auditing engine spanning 11 AI-readiness categories and 35 distinct checks (24 test-covered), with 0–100 citability scoring and automated Schema.org/robots.txt remediation snippets; achieved 94.4% audit completion across 18 real-world domains.",
+        "Implemented bounded, robots-aware crawling and multi-tier SSRF safeguards; DOM/schema signal extraction averaged 0.272 ms, while unsafe-address rejection averaged 1.37 ms across 14 test patterns.",
+        "Revalidated 23/23 API tests, 45/45 pre-deployment checks, 13/13 self-test fixtures (123 check points), and all 6 multi-skill integrations; the frontend production build compiled 1,978 modules.",
+      ],
+      metrics: [
+        {
+          label: "DIAGNOSTIC SCOPE",
+          value: "11 / 35",
+          detail: "11 AI-readiness categories · 35 distinct checks (24 test-covered)",
+        },
+        {
+          label: "AUDIT COMPLETION",
+          value: "94.4%",
+          detail: "Benchmarked across 18 real-world production domains",
+        },
+        {
+          label: "SIGNAL EXTRACTION",
+          value: "0.272 ms",
+          detail: "DOM/schema parse · 1.37 ms SSRF rejection (14 test patterns)",
+        },
+        {
+          label: "VALIDATION SUITE",
+          value: "23 / 45",
+          detail: "23/23 API tests · 45/45 pre-deploy · 1,978 modules compiled",
+        },
       ],
       auditCategories: [
         {
@@ -422,11 +509,33 @@ export const PORTFOLIO_DATA = {
       isUndeployed: true,
       stack: ["LLM Services", "OCR", "Document Processing", "FastAPI", "SQLite", "React"],
       summary:
-        "Built an LLM-driven patient-intake workflow to collect and structure patient information, with a document pipeline to extract data from uploaded medical records, protocol-oriented reviews, and medicine-label OCR.",
+        "Built an LLM-driven patient-intake workflow to collect and structure patient information, with a document pipeline to extract data from uploaded medical records, protocol-oriented review, medicine-label OCR, and voice assistance.",
       highlights: [
         "Built an LLM-driven patient-intake workflow to collect and structure patient information, with a document pipeline to extract data from uploaded medical records.",
         "Developed AI-assisted report generation and protocol-oriented review; an LLM reviewer flags contradictions and unsupported claims in generated reports.",
         "Integrated AI services with FastAPI and contributed to SQLite persistence, API-key authentication, configurable multilingual support, medicine-label OCR, and voice-assistance workflows; team secured second place at the SIH ’26 internal hackathon.",
+      ],
+      metrics: [
+        {
+          label: "COMPETITION AWARD",
+          value: "2nd Place",
+          detail: "SIH '26 internal hackathon (Team Reflexes)",
+        },
+        {
+          label: "CLINICAL INTAKE",
+          value: "LLM + OCR",
+          detail: "Structured patient forms & uploaded record ingestion",
+        },
+        {
+          label: "EVALUATION ENGINE",
+          value: "Protocol Review",
+          detail: "Flags contradictions and unsupported claims in reports",
+        },
+        {
+          label: "INFRASTRUCTURE",
+          value: "FastAPI + SQLite",
+          detail: "API-key auth, multilingual support & voice workflows",
+        },
       ],
     },
   ] as Project[],
@@ -440,43 +549,63 @@ export const PORTFOLIO_DATA = {
       status: "CURRENT UNDERGRADUATE",
       cgpa: "7.81 / 10.0",
       details:
-        "Bridging physical mechatronics, control systems, and robotics with rigorous computer science fundamentals, neural network design, and multi-agent AI orchestration.",
+        "Bridging physical mechatronics, control systems, and robotics with rigorous computer science fundamentals, neural network design, reinforcement learning, and multi-agent AI orchestration.",
     },
     {
       institution: "New Holy Ganges Public School, Khagaria, Bihar",
-      degree: "Senior Secondary Board Examination (Class XII, CBSE)",
+      degree: "Class XII",
       minor: null,
       timeline: "Completed",
       status: "COMPLETED",
-      cgpa: "84.0%",
+      cgpa: "84%",
       details: "Strong foundational grounding in mathematics, physics, and computational thinking.",
     },
   ],
 
   achievements: [
     {
-      id: "ai-verse",
-      title: "3rd Place — AI-Verse '26 Machine Learning Challenge",
-      badge: "COMPETITION",
+      id: "synapse-arena",
+      title: "2nd Place — Synapse Arena (Reinforcement Learning-based Racing Agent Challenge)",
+      badge: "2ND PLACE // RL",
       badgeType: "primary",
       description:
-        "Machine Learning Challenge at IIIT Bhagalpur (2026); developed predictive models with tailored feature engineering, evaluation metrics, and cross-validation.",
+        "PROTOFOS Tech Fest ’26, IIIT Bhagalpur; developed a competitive reinforcement learning racing agent navigating continuous action trajectories, reward shaping, and obstacle avoidance.",
+      link: {
+        label: "View Certificates →",
+        url: "/resume.pdf",
+      },
+    },
+    {
+      id: "ai-verse",
+      title: "3rd Place — AI-Verse ’26 Machine Learning Challenge",
+      badge: "3RD PLACE // ML",
+      badgeType: "secondary",
+      description:
+        "Machine Learning Challenge at IIIT Bhagalpur (2026); developed predictive statistical models with tailored feature engineering, evaluation metrics, and cross-validation.",
+      link: {
+        label: "View Certificates →",
+        url: "/resume.pdf",
+      },
     },
     {
       id: "sih-2026",
-      title: "2nd Place — SIH '26 Internal Hackathon (Team Reflexes)",
-      badge: "TEAM ACHIEVEMENT",
+      title: "2nd Place — SIH ’26 Internal Hackathon",
+      badge: "2ND PLACE // TEAM",
       badgeType: "secondary",
       description:
-        "Recognized with Team Reflexes at IIIT Bhagalpur for MediReach, implementing LLM patient-intake workflows, protocol review, prescription OCR, and voice assistance.",
+        "Recognized at IIIT Bhagalpur (2026) for MediReach: full-stack AI healthcare platform with LLM patient intake, clinical report review, medicine-label OCR, and voice workflows.",
+      link: {
+        label: "View Project Repo →",
+        url: "https://github.com/BIT-BY-BIT-26/Reflexes",
+      },
     },
     {
       id: "dsa-codolio",
-      title: "200+ DSA Problems Solved",
-      badge: "ALGORITHMIC",
+      title: "Solved 200+ DSA Problems (Codolio)",
+      badge: "200+ SOLVED",
       badgeType: "neutral",
       description:
-        "Consistent algorithmic problem solving across graph algorithms, dynamic programming, trees, and complexity analysis on Codolio.",
+        "Consistent algorithmic problem solving across graph algorithms, dynamic programming, trees, and computational complexity on Codolio.",
       link: {
         label: "Codolio Profile →",
         url: "https://codolio.com/profile/harsh1706",
@@ -488,9 +617,9 @@ export const PORTFOLIO_DATA = {
       badge: "CERTIFICATION",
       badgeType: "neutral",
       description:
-        "IBM SkillsBuild, Jan 2026 (Course covering LLM transformer architectures, attention mechanisms, and prompt engineering).",
+        "IBM SkillsBuild, Jan 2026; transformer architectures, self-attention mechanisms, and prompt engineering strategies.",
       link: {
-        label: "View Resume / Credentials →",
+        label: "View Certificates →",
         url: "/resume.pdf",
       },
     },
@@ -501,8 +630,30 @@ export const PORTFOLIO_DATA = {
     organization: "Robotics and Electronics Club, IIIT Bhagalpur",
     timeline: "2024–2025",
     bullets: [
-      "Coordinated team members, supported task planning, and oversaw the execution of robotics projects within club activities.",
-      "Organized technical workshops and guided junior students during robotics project work and technical learning activities.",
+      "Coordinated about 5 teams across 4 robotics projects; organized 10+ technical workshops for an average of 25 students, mentored 20+ students, and contributed to management of Enyugma, IIIT Bhagalpur’s techno-cultural festival.",
+      "Mentored junior undergraduates in microcontroller interfacing, kinematics, sensor telemetry, and hardware debugging, strengthening institutional technical knowledge.",
+    ],
+    metrics: [
+      {
+        label: "ROBOTICS TEAMS & PROJECTS",
+        value: "5 Teams · 4 Projects",
+        detail: "Cross-functional project execution",
+      },
+      {
+        label: "TECHNICAL WORKSHOPS",
+        value: "10+ Sessions",
+        detail: "Average 25 students per session",
+      },
+      {
+        label: "STUDENTS MENTORED",
+        value: "20+ Students",
+        detail: "Direct hands-on technical guidance",
+      },
+      {
+        label: "FESTIVAL MANAGEMENT",
+        value: "Enyugma",
+        detail: "IIIT Bhagalpur techno-cultural fest",
+      },
     ],
   },
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { Users, Wrench, Sparkles } from "lucide-react";
+import { Users, Wrench, Sparkles, Compass, Presentation, Award, BookOpen } from "lucide-react";
 import { PORTFOLIO_DATA } from "@/data/portfolioData";
 
 export function Leadership() {
@@ -17,7 +17,7 @@ export function Leadership() {
             </div>
             <div>
               <span className="font-mono text-xs text-[#0037b0] font-semibold uppercase">
-                LEADERSHIP &amp; COMMUNITY // 2024–2025
+                LEADERSHIP &amp; COMMUNITY // {leadership.timeline}
               </span>
               <h3 className="text-xl font-bold text-[#1c1b1a]">
                 {leadership.role} — {leadership.organization}
@@ -29,6 +29,39 @@ export function Leadership() {
           </span>
         </div>
 
+        {/* Quantified Leadership Impact Strip */}
+        {leadership.metrics && (
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
+            {leadership.metrics.map((m, idx) => {
+              const icons = [
+                <Wrench key="w" className="w-4 h-4 text-[#0037b0]" />,
+                <Presentation key="p" className="w-4 h-4 text-[#a73a00]" />,
+                <BookOpen key="b" className="w-4 h-4 text-emerald-700" />,
+                <Award key="a" className="w-4 h-4 text-[#735c0f]" />,
+              ];
+              return (
+                <div
+                  key={idx}
+                  className="bg-[#f7f3f0] p-3 rounded border border-[#e6e2df] flex flex-col justify-between"
+                >
+                  <div className="flex items-center justify-between mb-1">
+                    <span className="font-mono text-[10px] text-[#434655] uppercase tracking-wider font-semibold">
+                      {m.label}
+                    </span>
+                    {icons[idx % icons.length]}
+                  </div>
+                  <div className="text-sm sm:text-base font-bold text-[#1c1b1a]">
+                    {m.value}
+                  </div>
+                  <div className="font-mono text-[10.5px] text-[#434655] mt-0.5">
+                    {m.detail}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
           {leadership.bullets.map((bullet, i) => (
             <div
@@ -36,7 +69,7 @@ export function Leadership() {
               className="flex items-start gap-3 p-4 rounded bg-[#f7f3f0] border border-[#e6e2df]"
             >
               {i === 0 ? (
-                <Wrench className="w-4 h-4 text-[#0037b0] shrink-0 mt-0.5" />
+                <Compass className="w-4 h-4 text-[#0037b0] shrink-0 mt-0.5" />
               ) : (
                 <Sparkles className="w-4 h-4 text-[#a73a00] shrink-0 mt-0.5" />
               )}

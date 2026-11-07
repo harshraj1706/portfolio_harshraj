@@ -9,11 +9,11 @@ export function SkillsToolkit() {
   const [selectedCategory, setSelectedCategory] = useState<CategoryFilter>("all");
 
   const filterButtons: { id: CategoryFilter; label: string }[] = [
-    { id: "all", label: "ALL TOOLS (8 GROUPS)" },
-    { id: "ml_data", label: "DATA SCIENCE & ML" },
+    { id: "all", label: "ALL SKILLS (8 DOMAINS)" },
+    { id: "ml_data", label: "DATA SCIENCE, ML & DL" },
     { id: "genai", label: "GENERATIVE & AGENTIC AI" },
-    { id: "backend", label: "BACKEND & CLOUD" },
-    { id: "core", label: "LANGUAGES & CS" },
+    { id: "backend", label: "BACKEND & FRONTEND" },
+    { id: "core", label: "LANGUAGES, TESTING & CS" },
   ];
 
   const filteredGroups = PORTFOLIO_DATA.skillGroups.filter((group) => {
@@ -32,13 +32,13 @@ export function SkillsToolkit() {
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
           <div>
             <span className="font-mono text-xs text-[#0037b0] font-semibold">
-              § 04 // APPARATUS &amp; RUNTIME
+              § 04 // TECHNICAL APPARATUS &amp; RUNTIME
             </span>
             <h2 className="text-3xl text-[#1c1b1a] tracking-tight font-semibold mt-1">
-              Engineering Toolkit
+              Technical Skills &amp; Stack
             </h2>
             <p className="text-sm text-[#434655] max-w-2xl mt-1 leading-relaxed">
-              Curated inventory of verified programming languages, machine learning frameworks, generative orchestrators, cloud runtimes, and system foundations directly reflected in production codebases.
+              Curated inventory of verified programming languages, data science libraries, machine learning &amp; reinforcement learning techniques, generative agent orchestrators, and testing fundamentals.
             </p>
           </div>
 

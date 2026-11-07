@@ -158,13 +158,13 @@ export function EngineeringFocus() {
               </span>
             </div>
             <h4 className="text-sm font-semibold text-[#1c1b1a] mb-1 group-hover:text-[#0037b0] transition-colors">
-              Multi-Agent Research System
+              CogniSynth: Multi-Agent Research System
             </h4>
             <p className="text-xs text-[#434655] leading-normal mb-3">
-              Autonomous LangGraph research workflow coordinating dynamic task decomposition, multi-source Tavily harvesting, evidence proposition extraction, and contradiction checks.
+              LangGraph research workflow orchestrating 6 active agents to decompose topics, harvest web sources, extract atomic claims, and detect contradictions (41 claims processed, &lt;5 ms TF-IDF retrieval).
             </p>
             <div className="flex items-center justify-between font-mono text-[11px] text-[#434655] border-t border-[#e6e2df] pt-2">
-              <span>DEPLOYED: Hugging Face</span>
+              <span>TELEMETRY: $0.00249/run</span>
               <a
                 href="https://github.com/harshraj1706/multi-agent-system"
                 target="_blank"
@@ -181,7 +181,7 @@ export function EngineeringFocus() {
           <div className="bg-white p-5 rounded shadow-sm hover:shadow-md transition-all border border-[#e6e2df] hover:border-[#a73a00] group">
             <div className="flex items-center justify-between mb-2">
               <span className="font-mono text-[11px] font-semibold text-[#a73a00]">
-                BUILD // WAR-AUDIT
+                BUILD // BRAND-AUDIT
               </span>
               <span className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded bg-[#ffdbce] text-[#370e00] font-mono text-[11px] font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#fd651e] animate-ping" />
@@ -189,13 +189,13 @@ export function EngineeringFocus() {
               </span>
             </div>
             <h4 className="text-sm font-semibold text-[#1c1b1a] mb-1 group-hover:text-[#a73a00] transition-colors">
-              Website AI-Readiness Auditing Tool
+              Brand AI-Readiness Auditing Engine
             </h4>
             <p className="text-xs text-[#434655] leading-normal mb-3">
-              Evaluates target websites for AI crawler access directives, Schema.org semantic metadata, content quotability, and flags blockers limiting AI-agent discoverability.
+              FastAPI/React engine spanning 11 AI-readiness categories and 35 distinct checks (24 test-covered), with 0–100 citability scoring and 94.4% audit completion across 18 real-world domains.
             </p>
             <div className="flex items-center justify-between font-mono text-[11px] text-[#434655] border-t border-[#e6e2df] pt-2">
-              <span>NODE: HTTP Instance</span>
+              <span>VALIDATION: 23/23 API tests</span>
               <a
                 href="https://github.com/harshraj1706/auditing_website_agent"
                 target="_blank"

@@ -80,10 +80,10 @@ export function AboutTrajectory() {
                 </span>
               </div>
               <h3 className="text-base font-semibold text-[#1c1b1a] mb-2 group-hover:text-[#0037b0] transition-colors">
-                Machine Learning &amp; DL
+                Machine Learning, RL &amp; DL
               </h3>
               <p className="text-xs text-[#434655] leading-relaxed mb-4">
-                Empirical mathematical modeling, supervised &amp; unsupervised pipelines, neural representation learning, and cross-validation rigor.
+                Empirical mathematical modeling, reinforcement learning policies (Synapse Arena 2nd place), neural representation learning, and cross-validation rigor.
               </p>
             </div>
             <div className="space-y-1.5 pt-3 font-mono text-[11px] text-[#434655] border-t border-[#e6e2df]">
@@ -93,7 +93,7 @@ export function AboutTrajectory() {
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#0037b0] rounded-full" />
-                CNNs &amp; Transfer Learning
+                Reinforcement Learning (RL)
               </div>
               <div className="flex items-center gap-2">
                 <span className="w-1.5 h-1.5 bg-[#0037b0] rounded-full" />
